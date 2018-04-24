@@ -1,0 +1,258 @@
+;My polybar config:
+;=====================================================
+
+[colors]
+background = #282828
+background-alt = #444
+foreground = #ebdbb2
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+;Gruvbox Colors:
+
+blue = #83a598
+aqua = #8ec07c
+purple = #d3869b
+red = #fb4934
+orange = #fe8019
+yellow = #fabd2f
+bblue = #458588
+
+[bar/bar]
+monitor = ${env:MONITOR:HDMI-0}
+width = 100%
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "FantasqueSansMono Nerd Font:pixelsize=9;2.25"
+font-1 = "Wucon Siji:pixelsize=10;1"
+
+modules-left = bspwm
+modules-center = xwindow
+modules-right = filesystem volume memory cpu temperature date powermenu
+
+;tray-position = right
+;tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+label-underline = ${colors.bblue}
+
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted =  : %percentage_used%%
+label-mounted-foreground = ${colors.yellow}
+;label-unmounted = %mountpoint% not mounted
+;label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/bspwm]
+type = internal/bspwm
+
+;label-focused = %index%
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+;label-occupied = %index%
+label-occupied = %name%
+label-occupied-padding = 2
+
+;label-urgent = %index%!
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+;label-empty = %index%
+label-empty = %name%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.blue}
+format-foreground = ${colors.blue}
+label-foreground = ${colors.blue}
+;format-underline = #f90000
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.aqua}
+format-foreground = ${colors.aqua}
+label-foreground = ${colors.aqua}
+;format-underline = #4bffdc
+label = %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+;format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+;format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %Y-%m-%d
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = " "
+format-prefix-foreground = ${colors.purple}
+;format-underline = #0a6cf5
+
+label = %date% %time%
+label-foreground = ${colors.purple}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = " "
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+;format = <ramp> <label>
+format = <label>
+;format-underline = #f50a4d
+;format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-foreground = ${colors.red}
+;label-warn = %temperature%
+;label-warn-foreground = ${colors.red}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = " "
+label-open-foreground = ${colors.red}
+label-close =  cancel
+label-close-foreground = ${colors.red}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
