@@ -1,21 +1,20 @@
 #! /bin/sh
 
-#programs which need to be run on startup:
+#Essential startup applications:
 sxhkd &
-redshift &
 compton &
-dunst &
+polybar bar &
 
-#Setting the wallpaper here:
-feh --bg-scale ~/Pictures/Wallpapers/groot-i-am-root-qhd-1920x1080.jpg
+#Setting wallpaper through feh:
+feh --bg-scale ~/Pictures/Wallpapers/current_wallpaper.jpg
 
-#bspc monitor HDMI-0 -d I II III IV V 
-#bspc monitor HDMI-1 -d VI VII VIII IX X
+#Default monitor configuration:
+#bspc monitor -d I II III IV V VI VII VIII IX X
 
-#Setting up the monitors with their labels:
-bspc monitor HDMI-0 -d "1. " "2. " "3. " "4. " "5. " 
-bspc monitor HDMI-1 -d "6. " "7. " "8. " "9. " "10. "
+#Current monitor configuration:
+bspc monitor -d "1 " "2 " "3 " "4 " "5 " "6 " "7 " "8 " "9 " "10 "
 
+#Options:
 bspc config border_width         3
 bspc config window_gap          12
 
@@ -31,12 +30,5 @@ bspc config normal_border_color "#83A598"
 bspc config active_border_color "#FABD2F"
 
 #Rules for specific applications:
-bspc rule -a Google-chrome desktop='^6' state=fullscreen
-bspc rule -a Slack desktop='^8'
-
-#Arbitrary startup applications:
-google-chrome-stable
-slack
-
-#Launching polybar on startup:
-$HOME/.config/polybar/launch.sh
+bspc rule -a Google-chrome desktop='^2'
+bspc rule -a Slack desktop='^9'
