@@ -19,9 +19,10 @@ red = #fb4934
 orange = #fe8019
 yellow = #fabd2f
 bblue = #458588
+black = #282828
 
 [bar/bar]
-monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:HDMI-0}
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -42,17 +43,22 @@ padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = "Iosevka Nerd Font:pixelsize=13;2.25"
-font-1 = "Wucon Siji:pixelsize=10;1"
+font-0 = "Fira Sans:pixelsize=13;2.25"
+font-1 = "Iosevka Nerd Font:pixelsize=13;2.25"
+font-2 = "Wucon Siji:pixelsize=10;1"
 
 modules-left = bspwm
 modules-center = xwindow
-modules-right = filesystem volume memory cpu temperature date powermenu
+modules-right = volume filesystem memory cpu temperature date powermenu
 
 ;tray-position = right
 ;tray-padding = 2
+;tray-background = ${colors.background}
+;tray-detached = false
+;tray-maxsize = 16
+;tray-scale = 1.0
 ;tray-transparent = true
 ;tray-background = #0063ff
 
@@ -81,10 +87,12 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
+mount-1 = /mnt
 
 ;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-mounted =  : %percentage_used%%
-label-mounted-foreground = ${colors.yellow}
+label-mounted =  %mountpoint% : %percentage_used%%
+label-mounted-foreground = ${colors.black}
+label-mounted-background = ${colors.yellow}
 ;label-unmounted = %mountpoint% not mounted
 ;label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -115,9 +123,11 @@ label-empty-padding = 2
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.blue}
-format-foreground = ${colors.blue}
-label-foreground = ${colors.blue}
+format-prefix-foreground = ${colors.black}
+format-prefix-background = ${colors.blue}
+format-foreground = ${colors.black}
+label-foreground = ${colors.black}
+label-background = ${colors.blue}
 ;format-underline = #f90000
 label = %percentage:2%%
 
@@ -125,9 +135,13 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.aqua}
-format-foreground = ${colors.aqua}
-label-foreground = ${colors.aqua}
+format-prefix-foreground = ${colors.black}
+format-foreground = ${colors.black}
+label-foreground = ${colors.black}
+format-prefix-background = ${colors.aqua}
+format-background = ${colors.aqua}
+label-background = ${colors.aqua}
+
 ;format-underline = #4bffdc
 label = %percentage_used%%
 
@@ -158,11 +172,14 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = " "
-format-prefix-foreground = ${colors.purple}
+format-prefix-foreground = ${colors.black}
 ;format-underline = #0a6cf5
 
 label = %date% %time%
-label-foreground = ${colors.purple}
+label-foreground = ${colors.black}
+
+format-prefix-background = ${colors.purple}
+label-background = ${colors.purple}
 
 [module/volume]
 type = internal/volume
@@ -198,7 +215,8 @@ thermal-zone = 0
 warn-temperature = 60
 
 format-prefix = " "
-format-prefix-foreground = ${colors.red}
+format-prefix-foreground = ${colors.black}
+format-prefix-background = ${colors.red}
 ;format = <ramp> <label>
 format = <label>
 ;format-underline = #f50a4d
@@ -206,7 +224,8 @@ format = <label>
 ;format-warn-underline = ${self.format-underline}
 
 label = %temperature%
-label-foreground = ${colors.red}
+label-foreground = ${colors.black}
+label-background = ${colors.red}
 ;label-warn = %temperature%
 ;label-warn-foreground = ${colors.red}
 
@@ -244,6 +263,14 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/player-mpris-tail]
+type = custom/script
+exec = ~/polybar-scripts/player-mpris-tail.py
+tail = true
+click-left = ~/polybar-scripts/player-ctrl.sh previous
+click-right = ~/polybar-scripts/player-ctrl.sh next
+click-middle = ~/polybar-scripts/player-ctrl.sh play-pause
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -254,5 +281,61 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
+[bar/bar2]
+monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = "Product Sans:pixelsize=13;2.25"
+font-1 = "Iosevka Nerd Font:pixelsize=13;2.25"
+font-2 = "Wucon Siji:pixelsize=10;1"
+
+modules-left = bspwm
+modules-center = xwindow
+modules-right = 
+
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.background}
+tray-detached = false
+tray-maxsize = 16
+tray-scale = 1.0
+;tray-transparent = true
+;tray-background = #0063ff
+
+wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
 
 ; vim:ft=dosini
