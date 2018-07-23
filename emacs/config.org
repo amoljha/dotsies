@@ -47,17 +47,42 @@
 #+BEGIN_SRC emacs-lisp
 (setq backup-directory-alist `(("." . "~/.emacs_backups")))
 #+END_SRC
+
+*** Enabling line numbers
+#+BEGIN_SRC emacs-lisp
+(global-linum-mode t)
+#+END_SRC
+*** Enabling ibuffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+*** Keybinding for opening config file (config.org):
+#+BEGIN_SRC emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org")
+    )
+  (global-set-key (kbd "C-c e") 'config-visit)
+#+END_SRC
+*** Keybinding for (re)loading config file (config.org):
+#+BEGIN_SRC emacs-lisp
+  (defun config-reload ()
+      (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+    )
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+END_SRC
+*** Keybinding for opening config file (init.el):
+#+BEGIN_SRC emacs-lisp
+  (defun conf-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/init.el")
+    )
+  (global-set-key (kbd "C-c i") 'conf-visit)
+#+END_SRC
 * Package Configuration
 ** Package Installation and Configuration
 *** (Using use-package to install packages and their configurations)
-**** which-key
-#+BEGIN_SRC emacs-lisp
-(use-package which-key
-  :ensure t
-  :init
-  (which-key-mode))
-#+END_SRC
-
 **** beacon
 #+BEGIN_SRC emacs-lisp
 (use-package beacon
@@ -72,4 +97,45 @@
     :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+END_SRC
+**** ivy
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :ensure t
+    :init
+    (ivy-mode 1)
+    :config
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (global-set-key (kbd "C-s") 'swiper)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    )
+#+END_SRC
+**** avy
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind(
+          ("M-s" . avy-goto-char))
+    )
+#+END_SRC
+
+**** aggressive-indent-mode
+#+BEGIN_SRC emacs-lisp
+    (use-package aggressive-indent
+      :ensure t
+      :init (require 'aggressive-indent)
+      :config
+      (global-aggressive-indent-mode 1)
+    )
+#+END_SRC
+
+**** smartparens
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens
+    :ensure t
+    :config
+    (smartparens-global-mode 1)
+)
 #+END_SRC
