@@ -40,7 +40,7 @@
     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "62c81ae32320ceff5228edceeaa6895c029cc8f43c8c98a023f91b5b339d633f" default)))
  '(package-selected-packages
    (quote
-    (smartparens counsel aggressive-indent aggressive-indent-mode avy org-bullets beacon gruvbox-theme use-package))))
+    (rust-mode cuda-mode magit smartparens counsel aggressive-indent aggressive-indent-mode avy org-bullets beacon gruvbox-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -139,3 +139,23 @@
     (smartparens-global-mode 1)
 )
 #+END_SRC
+**** cuda-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package cuda-mode
+    :ensure t
+    )
+#+END_SRC
+**** magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :config
+    (global-set-key (kbd "C-x g") 'magit-status)
+    )
+#+END_SRC
+**** rust-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package rust-mode
+    :ensure t
+    )
+#+END_SRC
