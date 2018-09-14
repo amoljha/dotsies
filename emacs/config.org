@@ -80,6 +80,38 @@
     )
   (global-set-key (kbd "C-c i") 'conf-visit)
 #+END_SRC
+*** Splitting follows windows:
+**** Split and follow horizontally
+#+BEGIN_SRC emacs-lisp
+  (defun split-and-follow-horizontally ()
+    (interactive)
+    (split-window-below)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+#+END_SRC
+**** Split and follow vertically
+#+BEGIN_SRC emacs-lisp
+  (defun split-and-follow-vertically ()
+    (interactive)
+    (split-window-right)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+#+END_SRC
+* Org-Mode Settings
+** Setting files for org-agenda
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files (quote ("~/Dropbox/org/schedule.org")))
+#+END_SRC
+** Setting quick-hotkey for opening schedule file
+#+BEGIN_SRC emacs-lisp
+  (defun schedule-visit ()
+    (interactive)
+    (find-file "~/Dropbox/org/schedule.org")
+    )
+    (global-set-key (kbd "C-c o") 'schedule-visit)
+#+END_SRC
 * Package Configuration
 ** Package Installation and Configuration
 *** (Using use-package to install packages and their configurations)
@@ -158,4 +190,33 @@
   (use-package rust-mode
     :ensure t
     )
+#+END_SRC
+**** auctex
+#+BEGIN_SRC emacs-lisp
+  (use-package auctex
+    :defer t
+    :ensure t
+    )
+#+END_SRC
+**** LaTex Preview Pane
+#+BEGIN_SRC emacs-lisp
+  (use-package latex-preview-pane
+    :ensure t
+    :init 
+    (latex-preview-pane-enable)
+    )
+#+END_SRC
+**** switch-window
+#+BEGIN_SRC emacs-lisp
+  (use-package switch-window
+    :ensure t
+    :config
+    (setq switch-window-input-style 'minibuffer)
+    (setq switch-window-increase 4)
+    (setq switch-window-threshold 2)
+    (setq switch-window-shortcut-style 'qwerty)
+    (setq switch-window-qwerty-shortcuts
+	  '("a" "s" "d" "f" "j" "k" "l" ";"))
+    :bind
+    ([remap other-window] . switch-window))
 #+END_SRC
