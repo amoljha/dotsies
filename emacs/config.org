@@ -99,6 +99,10 @@
     (other-window 1))
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
+*** Show paren mode
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode 1)
+#+END_SRC
 * Org-Mode Settings
 ** Setting files for org-agenda
 #+BEGIN_SRC emacs-lisp
@@ -111,6 +115,10 @@
     (find-file "~/Dropbox/org/schedule.org")
     )
     (global-set-key (kbd "C-c o") 'schedule-visit)
+#+END_SRC
+** Setting org-mode source window to be the current window
+#+BEGIN_SRC emacs-lisp
+  (setq org-source-window-setup 'current-window)
 #+END_SRC
 * Package Configuration
 ** Package Installation and Configuration
@@ -219,4 +227,12 @@
 	  '("a" "s" "d" "f" "j" "k" "l" ";"))
     :bind
     ([remap other-window] . switch-window))
+#+END_SRC
+**** rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+    )
 #+END_SRC
