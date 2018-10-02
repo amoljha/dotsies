@@ -42,7 +42,7 @@
     ("f71859eae71f7f795e734e6e7d178728525008a28c325913f564a42f74042c31" "06239857eba54280977d62190690bef6d58f9653465c71b0fe279c560fdcac80" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "62c81ae32320ceff5228edceeaa6895c029cc8f43c8c98a023f91b5b339d633f" default)))
  '(package-selected-packages
    (quote
-    (diminish company dashboard rainbow-mode sudo-edit hungry-delete rust-mode cuda-mode magit smartparens counsel aggressive-indent aggressive-indent-mode avy org-bullets beacon gruvbox-theme use-package))))
+    (symon spaceline diminish company dashboard rainbow-mode sudo-edit hungry-delete rust-mode cuda-mode magit smartparens counsel aggressive-indent aggressive-indent-mode avy org-bullets beacon gruvbox-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

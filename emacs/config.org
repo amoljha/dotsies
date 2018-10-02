@@ -210,6 +210,13 @@
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 10))))
 #+END_SRC
+**** symon
+#+BEGIN_SRC emacs-lisp
+  (use-package symon
+    :ensure t
+    :bind
+    ("s-h" . symon-mode))
+#+END_SRC
 * Auto Completion
 ** Company
 #+BEGIN_SRC emacs-lisp
@@ -350,4 +357,13 @@ credit for the same goes to /u/gray_like_play over at reddit, at https://www.red
           (propertize name 'face 'font-lock-builtin-face)
           (or comment "")))
 (setq counsel-linux-app-format-function #'ds/counsel-linux-app-format-function)
+#+END_SRC
+** Spaceline
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+    (setq powerline-default-separator (quote wave))
+    (spaceline-emacs-theme))
 #+END_SRC
