@@ -223,13 +223,29 @@
     :ensure t
     :bind ("M-y" . popup-kill-ring))
 #+END_SRC
-* Auto Completion
-** Company
+* IDE Like Features
+** Auto Completion
+*** Company
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
     :init
     (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+** Syntax Checking
+*** Flycheck
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+#+END_SRC
+*** Flycheck-Rust
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-rust
+    :ensure t
+    :init
+    (with-eval-after-load 'rust-mode
+      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 #+END_SRC
 * Diminishing minor modes
 #+BEGIN_SRC emacs-lisp
@@ -240,6 +256,7 @@
     (diminish 'beacon-mode)
     (diminish 'subword-mode)
     (diminish 'rainbow-mode)
+    (diminish 'smartparens-mode)
     )
 #+END_SRC
 * Miscellaneous
@@ -370,7 +387,7 @@ credit for the same goes to /u/gray_like_play over at reddit, at https://www.red
     :ensure t
     :config
     (require 'spaceline-config)
-    (setq powerline-default-separator (quote wave))
+    (setq powerline-default-separator (quote bar))
     (setq-default powerline-height 26)
     (spaceline-emacs-theme))
 #+END_SRC

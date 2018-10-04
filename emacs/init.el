@@ -42,11 +42,11 @@
     ("f71859eae71f7f795e734e6e7d178728525008a28c325913f564a42f74042c31" "06239857eba54280977d62190690bef6d58f9653465c71b0fe279c560fdcac80" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "62c81ae32320ceff5228edceeaa6895c029cc8f43c8c98a023f91b5b339d633f" default)))
  '(package-selected-packages
    (quote
-    (popup-kill-ring symon spaceline diminish company dashboard rainbow-mode sudo-edit hungry-delete rust-mode cuda-mode magit smartparens counsel aggressive-indent aggressive-indent-mode avy org-bullets beacon gruvbox-theme use-package))))
+    (flycheck-rust flycheck popup-kill-ring symon spaceline diminish company dashboard rainbow-mode sudo-edit hungry-delete rust-mode cuda-mode magit smartparens counsel aggressive-indent aggressive-indent-mode avy org-bullets beacon gruvbox-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#32302f" :foreground "#fdf4c1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 154 :width normal :foundry "CTDB" :family "Input Mono Medium")))))
+ '(default ((t (:inherit nil :stipple nil :background "#32302f" :foreground "#fdf4c1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "FBI " :family "Input Mono")))))
 
