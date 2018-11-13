@@ -1,18 +1,32 @@
 #! /bin/sh
 
 #Essential startup applications:
+~/.screenlayout/multimonitor_4k_potrait.sh &
 sxhkd &
 compton &
 polybar bar &
+polybar bar2 &
+sleep 1
+redshift-gtk &
+dunst &
+dropbox start &
+wmname LG3D
 
 #Setting wallpaper through feh:
-feh --bg-scale ~/Pictures/Wallpapers/current_wallpaper.jpg
+#feh --bg-scale ~/Pictures/Wallpapers/current_wallpaper.png
+
+#Setting the wallpaper through nitrogen:
+nitrogen --restore &
 
 #Default monitor configuration:
 #bspc monitor -d I II III IV V VI VII VIII IX X
 
 #Current monitor configuration:
-bspc monitor -d "1 " "2 " "3 " "4 " "5 " "6 " "7 " "8 " "9 " "10 "
+#Single monitor configuration:
+#bspc monitor -d "1 " "2 " "3 " "4 " "5 " "6 " "7 " "8 " "9 " "10 "
+#Dual monitor configuration:
+bspc monitor HDMI-0 -d "1 " "2 " "3 " "4 " "5 "
+bspc monitor HDMI-1 -d "6 " "7 " "8 " "9 " "10 "
 
 #Options:
 bspc config border_width         3
@@ -23,12 +37,17 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc config focus_follows_pointer true
+bspc config pointer_modifier mod1
 
 #Rules for coloring borders:
-bspc config focused_border_color "#8EC07C"
-bspc config normal_border_color "#83A598" 
-bspc config active_border_color "#FABD2F"
+bspc config focused_border_color "#8EC07C" #Bright Green
+bspc config normal_border_color "#83A598" #Light Blue
+bspc config active_border_color "#458588" #Bright Blue
+#bspc config active_border_color "#D65D0E" #Orange
 
 #Rules for specific applications:
 bspc rule -a Google-chrome desktop='^2'
 bspc rule -a Slack desktop='^9'
+bspc rule -a Code desktop='^3'
+bspc rule -a GitKraken desktop='^4'
+bspc rule -a Thunderbird desktop='^5'
