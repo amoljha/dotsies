@@ -1,9 +1,15 @@
 [options]
-font = FantasqueSansMono Nerd Font Mono 9
+#font = FantasqueSansMono Nerd Font Mono 13
+#font = Iosevka Term Medium 13
+#font = Office Code Pro Medium 13
+font = Fira Mono Medium 13
+#font = Input Mono Narrow Medium 13
 
+# Gruvbox Theme colors:
 [colors]
 # hard contrast: background = #1d2021
 background = #282828
+#background = #1d2021
 # soft contrast: background = #32302f
 foreground = #ebdbb2
 foreground_bold = #ebdbb2
@@ -40,4 +46,4 @@ color14 = #8ec07c
 color7 = #a89984
 color15 = #ebdbb2
 
-# vim: ft=dosini cms=#%s
+vim: ft=dosini cms=#%s
